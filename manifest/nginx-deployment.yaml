@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+       containers:
+       - name: nginx
+         image: mash4work/mash-k8s-nginx:2.0
+         env:
+         - name: TEST_ENV_VALUE1
+           value: "01"
+         - name: TEST_ENV_VALUE2
+           value: "02"
+         ports:
+         - containerPort: 80
